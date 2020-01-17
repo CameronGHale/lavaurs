@@ -1,0 +1,25 @@
+{
+  "name": "lavaurs",
+  "version": "0.1.0",
+  "description": "Whatever you want",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n3oncam/lavaurs.git"
+  },
+  "keywords": [
+    "laminations"
+  ],
+  "author": "Cameron Hale",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/n3oncam/lavaurs/issues"
+  },
+  "homepage": "https://github.com/n3oncam/lavaurs#readme",
+  "dependencies": {
+    "laminations-lib": "^0.9.4"
+  }
+}
