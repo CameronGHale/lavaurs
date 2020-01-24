@@ -1,8 +1,19 @@
-import { Fraction, Fractions, Chord } from 'laminations-lib';
+import { Fraction, Fractions, Chord, Chords } from 'laminations-lib'
 
-// const chordConnector = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): Chord[] => {
-//     return enumerateBetween(lBound, uBound) (base, maxPeriod)
-// }
+const chordConnector = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): Chord[] => {
+    const points = enumerateBetween(lBound, uBound)(base, maxPeriod)
+    if (points.length % base != 0) {
+        throw 'Bad Dr. Mayer'
+    }
+    let chords = []
+    for (let cursor = 0; cursor < points.length; cursor += base) {
+        const a = points[cursor]
+        // b will always exist due to the len of points being a multiple of base.
+        const b = points[cursor + base - 1]
+        chords.push(Chords.create(a, b))
+    }
+    return chords
+}
 
 export const enumerateBetween = (lBound: Fraction, uBound: Fraction) => (base: number, period: number): Fraction[] => {
     return enumerate(base, period)
