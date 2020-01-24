@@ -19,13 +19,26 @@ describe('enumerateBetween', ()=>{
             binary('_100'),
         ].map(stringify))
     })
+
+    it('keeps out dups for binary', () =>{
+        const enumerate = enumerateBetween(binary('_00'), binary("1_0"))
+        expect(enumerate(2,4).map(stringify)).toEqual([
+            binary('_0001'),
+            binary('_0010'),
+            binary('_0011'),
+            binary('_0100'),
+            //binary('_0101'),
+            binary('_0110'),
+            binary('_0111'),
+        ].map(stringify))
+    })
+
     it('works for ternary', () => {
         const enumerate = enumerateBetween(ternary('_01'), ternary('_20'))
         expect(enumerate(3, 2).map(stringify)).toEqual([
             ternary('_01'),
             ternary('_02'),
             ternary('_10'),
-            ternary('_11'),
             ternary('_12'),
             ternary('_20'),
         ].map(stringify))

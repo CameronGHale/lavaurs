@@ -1,13 +1,14 @@
 import { Fraction, Fractions, Chord } from 'laminations-lib';
 
-const chordConnector = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): Chord[] => {
-    enumerateBetween(lBound, uBound) (base, maxPeriod)
-}
+// const chordConnector = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): Chord[] => {
+//     return enumerateBetween(lBound, uBound) (base, maxPeriod)
+// }
 
 export const enumerateBetween = (lBound: Fraction, uBound: Fraction) => (base: number, period: number): Fraction[] => {
     return enumerate(base, period)
         .filter(item => Fractions.compare(lBound, item) <= 0)
         .filter(item => Fractions.compare(item, uBound) <= 0)
+        .filter(item => Fractions.repeatingLength(item) >= period)
 
 }
 
