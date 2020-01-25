@@ -1,6 +1,6 @@
 import { Fraction, Fractions, Chord, Chords } from 'laminations-lib'
 
-const chordConnector = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): Chord[] => {
+export const chordConnector = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): Chord[] => {
     const points = enumerateBetween(lBound, uBound)(base, maxPeriod)
     if (points.length % base != 0) {
         throw 'Bad Dr. Mayer'

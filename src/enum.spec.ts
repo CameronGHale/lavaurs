@@ -1,10 +1,29 @@
 import { enumerate, enumerateBetween } from './enum'
+import {chordConnector} from './enum'
 import { Fractions } from 'laminations-lib'
 
 const stringify = x => `${x}`
 
 const binary = Fractions.parseFactory(2)
 const ternary = Fractions.parseFactory(3)
+
+describe('chordConnector',() => {
+    it('connects chords in binary',() =>{
+        const connect = chordConnector(2,2,binary('_01'),binary('_10'))
+        expect(connect.map(String)).toEqual([
+            "_01, _10",
+        ].map(String))
+
+    })
+
+    it('works for ternary', () => {
+        const connect = chordConnector(2, 3, ternary('_0'),ternary('_21'))
+        expect(connect.map(String)).toEqual([
+            "_01, _10",
+            "_12, _21",
+        ].map(String))
+    })
+})
 
 describe('enumerateBetween', ()=>{
     it('works for binary', () => {
