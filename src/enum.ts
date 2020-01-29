@@ -1,5 +1,20 @@
 import { Fraction, Fractions, Chord, Chords } from 'laminations-lib'
 
+export const Lavaurs = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction ): JSON =>{
+
+    return
+}
+
+export const boundCreate = (lBound: Fraction, uBound: Fraction, Chords: Chord[]): Fraction[] => {
+    let Bounds = []
+    Bounds.push(lBound)
+    for(let i = 0; i < Chords.length-1;i++){
+        Bounds.push(Chords[i])
+    }
+    Bounds.push(uBound)
+    return Bounds
+}
+
 export const chordConnector = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): Chord[] => {
     const points = enumerateBetween(lBound, uBound)(base, maxPeriod)
     if (points.length % base != 0) {
