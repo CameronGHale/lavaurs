@@ -1,18 +1,19 @@
 import { Fraction, Fractions, Chord, Chords } from 'laminations-lib'
 
-export const Lavaurs = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction ): JSON =>{
+export const Lavaurs = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): JSON => {
 
     return
 }
 
-export const boundCreate = (lBound: Fraction, uBound: Fraction, Chords: Chord[]): Fraction[] => {
-    let Bounds = []
-    Bounds.push(lBound)
-    for(let i = 0; i < Chords.length-1;i++){
-        Bounds.push(Chords[i])
+export const boundCreate = (lBound: Fraction, uBound: Fraction, chords: Chord[]): Fraction[] => {
+    let bounds = []
+    bounds.push(lBound)
+    for (let i = 0; i < chords.length; i++) {
+        bounds.push(chords[i].lower)
+        bounds.push(chords[i].upper)
     }
-    Bounds.push(uBound)
-    return Bounds
+    bounds.push(uBound)
+    return bounds
 }
 
 export const chordConnector = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): Chord[] => {
@@ -84,4 +85,10 @@ const integer_pow = (base: number, exponent: number): number => {
     }
 
     return result | 0
+}
+export const parseChord = (pair: [string, string], base: number): Chord => {
+    const parseFrac = Fractions.parseFactory(base)
+    const lower = parseFrac(pair[0])
+    const upper = parseFrac(pair[1])
+    return Chords.create(lower, upper)
 }

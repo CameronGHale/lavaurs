@@ -1,4 +1,4 @@
-import { enumerate, enumerateBetween } from './enum'
+import { enumerate, enumerateBetween, boundCreate, parseChord } from './enum'
 import {chordConnector} from './enum'
 import { Fractions } from 'laminations-lib'
 
@@ -6,6 +6,21 @@ const stringify = x => `${x}`
 
 const binary = Fractions.parseFactory(2)
 const ternary = Fractions.parseFactory(3)
+
+describe('boundCreate',() => {
+
+    it('correctly lists bounds for basic base 3 case', () =>{
+        const bound = boundCreate(ternary('_01'),ternary('_10'),[['_011', '_020'],['_021','_100']].map(parseChord))
+        expect(bound.map(String)).toEqual([
+            "_01",
+            "_011",
+            "_020",
+            "_021",
+            "_100",
+            "_10",
+        ])
+    })
+})
 
 describe('chordConnector',() => {
     it('connects chords in binary',() =>{
