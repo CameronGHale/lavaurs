@@ -88,13 +88,16 @@ export const parseChord = (pair: [string, string], base: number): Chord => {
     return Chords.create(lower, upper)
 }
 
-export const Lavaurs = (currentPeriod:number, maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): JSON => {
+export const Lavaurs = (currentPeriod:number, maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): Chord[] => {
     const chords = chordConnector(maxPeriod,base,lBound,uBound)
     const bounds = boundCreate(lBound,uBound,chords) 
+    let minors = []
     if (currentPeriod<=maxPeriod){
         for(let i =0; i<bounds.length;i++){
-            Lavaurs(currentPeriod+1,maxPeriod,base,bounds[i],bounds[i+1])}
+            const iMinors = Lavaurs(currentPeriod+1,maxPeriod,base,bounds[i],bounds[i+1])}
+            minors.push(iMinors)
         }
+    
     return
 }
 

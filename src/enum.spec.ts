@@ -7,6 +7,10 @@ const stringify = x => `${x}`
 const binary = Fractions.parseFactory(2)
 const ternary = Fractions.parseFactory(3)
 
+describe('Lavaurs',() =>{
+    it ('correctly presents chords ')
+})
+
 describe('boundCreate',() => {
 
     it('correctly lists bounds for basic base 3 case', () =>{
