@@ -92,10 +92,9 @@ export const Lavaurs = (currentPeriod:number, maxPeriod: number, base: number, l
     const chords = chordConnector(maxPeriod,base,lBound,uBound)
     const bounds = boundCreate(lBound,uBound,chords) 
     if (currentPeriod<=maxPeriod){
-        for(let i =0; i<bounds.length;i++)
-    Lavaurs(currentPeriod+1,maxPeriod,base,bounds[i],bounds[i+1])
-    {}
+        for(let i =0; i<bounds.length;i++){
+            Lavaurs(currentPeriod+1,maxPeriod,base,bounds[i],bounds[i+1])}
+        }
     return
 }
 
-}
