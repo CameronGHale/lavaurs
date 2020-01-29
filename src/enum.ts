@@ -1,10 +1,5 @@
 import { Fraction, Fractions, Chord, Chords } from 'laminations-lib'
 
-export const Lavaurs = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): JSON => {
-
-    return
-}
-
 export const boundCreate = (lBound: Fraction, uBound: Fraction, chords: Chord[]): Fraction[] => {
     let bounds = []
     bounds.push(lBound)
@@ -91,4 +86,16 @@ export const parseChord = (pair: [string, string], base: number): Chord => {
     const lower = parseFrac(pair[0])
     const upper = parseFrac(pair[1])
     return Chords.create(lower, upper)
+}
+
+export const Lavaurs = (currentPeriod:number, maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): JSON => {
+    const chords = chordConnector(maxPeriod,base,lBound,uBound)
+    const bounds = boundCreate(lBound,uBound,chords) 
+    if (currentPeriod<=maxPeriod){
+        for(let i =0; i<bounds.length;i++)
+    Lavaurs(currentPeriod+1,maxPeriod,base,bounds[i],bounds[i+1])
+    {}
+    return
+}
+
 }
