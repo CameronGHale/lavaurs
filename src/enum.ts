@@ -14,7 +14,10 @@ export const boundCreate = (lBound: Fraction, uBound: Fraction, chords: Chord[])
 export const chordConnector = (maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): Chord[] => {
     const points = enumerateBetween(lBound, uBound)(base, maxPeriod)
     if (points.length % base != 0) {
-        throw 'Bad Dr. Mayer'
+        throw ({
+            points: points.map(Fractions.toString),
+            message: 'point len not base multiple'
+        })
     }
     let chords = []
     for (let cursor = 0; cursor < points.length; cursor += base) {
@@ -88,16 +91,16 @@ export const parseChord = (pair: [string, string], base: number): Chord => {
     return Chords.create(lower, upper)
 }
 
-export const Lavaurs = (currentPeriod:number, maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): Chord[] => {
-    const chords = chordConnector(maxPeriod,base,lBound,uBound)
-    const bounds = boundCreate(lBound,uBound,chords) 
+export const Lavaurs = (currentPeriod: number, maxPeriod: number, base: number, lBound: Fraction, uBound: Fraction): Chord[] => {
+    const chords = chordConnector(maxPeriod, base, lBound, uBound)
+    const bounds = boundCreate(lBound, uBound, chords)
     let minors = []
-    if (currentPeriod<=maxPeriod){
-        for(let i =0; i<bounds.length;i++){
-            const iMinors = Lavaurs(currentPeriod+1,maxPeriod,base,bounds[i],bounds[i+1])}
+    if (currentPeriod < maxPeriod) {
+        for (let i = 0; i < bounds.length; i++) {
+            const iMinors = Lavaurs(currentPeriod + 1, maxPeriod, base, bounds[i], bounds[i + 1])
             minors.push(iMinors)
         }
-    
-    return
+    }
+    return minors
 }
 
